@@ -14,6 +14,10 @@ dotenv.config();
 app.use(cors());
 app.use(bodyParser.json());
 
+//Task routes
+const taskRoutes = require('./routes/tasks');
+app.use('/tasks', taskRoutes);
+
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
 	.then(() => console.log('MongoDB connected'))
