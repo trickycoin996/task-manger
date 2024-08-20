@@ -1,0 +1,15 @@
+body {
+  padding-top: 20px;
+}
+#task-form {
+  margin-bottom: 20px;
+}
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-delete {
+  background-color: red;
+  color: white;
+}
