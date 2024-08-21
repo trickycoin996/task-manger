@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Task = require('../models/Task');
+const authMiddleware = require('../middleware/authMiddleware');
 
 // Create a new task
-router.post('/', async (req, res) => {
+router.post('/', authMiddleware, async (req, res) => {
   try {
     const newTask = new Task(req.body);
     const savedTask = await newTask.save();
@@ -14,7 +15,7 @@ router.post('/', async (req, res) => {
 });
 
 // Get all tasks
-router.get('/', async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
   try {
     const tasks = await Task.find();
     res.json(tasks);
@@ -24,7 +25,7 @@ router.get('/', async (req, res) => {
 });
 
 // Update a task
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', authMiddleware, async (req, res) => {
   try {
     const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(updatedTask);
@@ -34,7 +35,7 @@ router.patch('/:id', async (req, res) => {
 });
 
 // Delete a task
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authMiddleware, async (req, res) => {
   try {
     await Task.findByIdAndDelete(req.params.id);
     res.json({ message: 'Task deleted' });

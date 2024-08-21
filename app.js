@@ -14,6 +14,10 @@ dotenv.config();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Middleware and routes
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
 //Task routes
 const taskRoutes = require('./routes/tasks');
 app.use('/tasks', taskRoutes);
