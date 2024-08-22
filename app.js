@@ -14,9 +14,9 @@ dotenv.config();
 app.use(cors());
 app.use(bodyParser.json());
 
-// Middleware and routes
+// Authentication route
 const authRoutes = require('./routes/auth');
-app.use('/api/auth', authRoutes);
+app.use('/auth', authRoutes);
 
 //Task routes
 const taskRoutes = require('./routes/tasks');
